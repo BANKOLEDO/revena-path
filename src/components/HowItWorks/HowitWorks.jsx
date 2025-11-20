@@ -76,9 +76,9 @@ const HowItWorks = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="max-w-7xl 2xl:mx-auto m-6 px-4 sm:px-6 lg:px-8 py-4 md:py-4 border-2 border-blue-800 text-blue-950 bg-white rounded-lg">
             <motion.div 
-                className="flex flex-col gap-8 p-6 md:p-8 border-2 border-blue-800 text-blue-950 bg-white rounded-lg"
+                className="flex flex-col gap-8 p-6 md:p-8 "
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8 }}
@@ -171,14 +171,14 @@ const HowItWorks = () => {
                         ease: "easeOut" 
                     }}
                 >
-                    <div className="overflow-hidden rounded-lg border-2 border-blue-800">
+                    <div className="overflow-hidden">
                         <video 
                             src='/assets/visual2.mp4' 
                             autoPlay 
                             loop 
                             muted 
                             playsInline
-                            className="w-full h-34 md:h-50 lg:h-[300px] object-cover"
+                            className="w-full h-full object-cover"
                         />
                     </div>
                 </motion.div>

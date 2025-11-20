@@ -14,14 +14,11 @@ const Hero = () => {
           {/* Text Content - Left Side */}
           <div className="text-left">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-left leading-12 md:leading-20">
-              <motion.span
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+              <span
                 className="block"
               >
                 RETAIL
-              </motion.span>
+              </span>
               
               <span
                 className="block text-blue-500"
@@ -29,18 +26,11 @@ const Hero = () => {
                 CHARGEBACKS
               </span>
               
-              <motion.span
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ 
-                  duration: 0.7, 
-                  delay: 0.6,
-                  ease: "easeOut" 
-                }}
+              <span
                 className="block"
               >
                 MADE SIMPLE.
-              </motion.span>
+              </span>
             </h1>
           </div>
 

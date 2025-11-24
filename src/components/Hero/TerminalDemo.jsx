@@ -108,7 +108,7 @@ const TerminalDemo = () => {
   }
 
   return (
-    <div className="mt-20 bg-gray-900 border border-gray-700 rounded-lg p-6 max-w-3xl mx-auto font-['JetBrains_Mono'] text-sm">
+    <div className="mt-20 bg-gray-900 border border-gray-700 rounded-lg p-6 max-w-7xl mx-auto font-['JetBrains_Mono'] text-sm">
       {/* Terminal Header */}
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-700">
         <div className="flex items-center space-x-2">

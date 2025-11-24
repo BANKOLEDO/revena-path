@@ -8,7 +8,7 @@ const Navigation = () => {
     <nav className=" max-w-7xl 2xl:mx-auto flex items-center justify-between py-2 m-6 px-6 bg-white relative z-50 border-2 rounded-sm">
       {/* Logo */}
       <motion.img 
-        src="/assets/logo-dark-transparent.png" 
+        src="/assets/logo/logo-dark-transparent.png" 
         className="w-40" 
         alt="logo" 
         whileHover={{ scale: 1.02 }}

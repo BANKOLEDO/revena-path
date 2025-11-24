@@ -54,7 +54,7 @@ const RetailSupport = () => {
           >
             <img src={company.logo} className="w-36" />
             <button className="border-2 rounded-md p-2 text-sm font-bold">
-                <p>See How We Support <span className="block md:inline">{company.name}</span></p>
+                <p>See How We Support <span className="block sm:inline">{company.name}</span></p>
             </button>
           </div>
         ))}

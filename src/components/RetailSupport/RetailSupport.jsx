@@ -53,8 +53,8 @@ const RetailSupport = () => {
             } flex flex-col items-center text-blue-950 bg-white border-2 p-2 rounded-lg shadow-lg transition hover:scale-[1.02]`}
           >
             <img src={company.logo} className="w-36" />
-            <button className="border-2 rounded-md p-2 text-sm font-bold">
-                <p>See How We Support <span className="block sm:inline">{company.name}</span></p>
+            <button className="border-2 rounded-md p-1 lg:p-2 text-sm font-bold">
+                <p>See How We Support <span>{company.name}</span></p>
             </button>
           </div>
         ))}

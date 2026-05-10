@@ -1,188 +1,126 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  FaCheck, 
-  FaChartBar, 
-  FaSync, 
-  FaDollarSign, 
-  FaBullseye, 
-  FaBolt,
-  FaTerminal
-} from 'react-icons/fa'
+import { FaCheck, FaArrowUp, FaClock } from 'react-icons/fa'
 
 const TerminalDemo = () => {
-  const [currentLine, setCurrentLine] = useState(0)
-  const [isComplete, setIsComplete] = useState(false)
+  const [visibleLogs, setVisibleLogs] = useState(0)
+  const [complete, setComplete] = useState(false)
 
-  const terminalLines = [
-    { 
-      text: "revenapath --analyze --recover", 
-      type: "command",
-      icon: null
-    },
-    { 
-      text: "Connecting to retailer portals...", 
-      type: "process",
-      icon: null
-    },
-    { 
-      text: "Connected to Nimbus Consumer Goods", 
-      type: "success",
-      icon: FaCheck
-    },
-    { 
-      text: "Connected to Vertex Retail Group", 
-      type: "success",
-      icon: FaCheck
-    },
-    { 
-      text: "Connected to BlueCrate Supply", 
-      type: "success",
-      icon: FaCheck
-    },
-    { 
-      text: "Analyzing chargeback data...", 
-      type: "process",
-      icon: null
-    },
-    { 
-      text: "Found 127 new chargebacks this week", 
-      type: "info",
-      icon: FaChartBar
-    },
-    { 
-      text: "Processing disputes...", 
-      type: "process",
-      icon: null
-    },
-    { 
-      text: "Auto-submitting 89 disputes", 
-      type: "info",
-      icon: FaSync
-    },
-    { 
-      text: "Revenue recovered: $47,281", 
-      type: "success",
-      icon: FaDollarSign
-    },
-    { 
-      text: "Success rate: 86%", 
-      type: "success",
-      icon: FaBullseye
-    },
-    { 
-      text: "Average processing time: 2.3h", 
-      type: "info",
-      icon: FaBolt
-    }
+  const logs = [
+    { text: 'Nimbus Consumer Goods - batch 8921', status: 'disputed', time: '2.1m' },
+    { text: 'Vertex Retail Group - batch 4517', status: 'won', time: '1.8m' },
+    { text: 'BlueCrate Supply - batch 7743', status: 'disputed', time: '3.2m' },
+    { text: 'Nimbus Consumer Goods - batch 8927', status: 'won', time: '1.4m' },
+    { text: 'Vertex Retail Group - batch 4522', status: 'won', time: '0.9m' },
+    { text: 'BlueCrate Supply - batch 7751', status: 'disputed', time: '2.7m' },
+    { text: 'Nimbus Consumer Goods - batch 8934', status: 'won', time: '1.6m' },
+    { text: 'Vertex Retail Group - batch 4530', status: 'disputed', time: '3.8m' },
+    { text: 'BlueCrate Supply - batch 7760', status: 'won', time: '1.2m' },
+    { text: 'Nimbus Consumer Goods - batch 8940', status: 'won', time: '2.3m' },
   ]
 
   useEffect(() => {
-    if (currentLine < terminalLines.length) {
-      const timer = setTimeout(() => {
-        setCurrentLine(prev => prev + 1)
-      }, 400)
-      
-      return () => clearTimeout(timer)
-    } else {
-      setIsComplete(true)
+    if (visibleLogs < logs.length) {
+      const t = setTimeout(() => setVisibleLogs((p) => p + 1), 300)
+      return () => clearTimeout(t)
     }
-  }, [currentLine])
+  }, [visibleLogs, logs.length])
 
-  const getLineColor = (type) => {
-    switch (type) {
-      case 'command': return 'text-green-400'
-      case 'success': return 'text-green-500'
-      case 'info': return 'text-blue-400'
-      case 'process': return 'text-gray-300'
-      default: return 'text-gray-300'
+  useEffect(() => {
+    if (visibleLogs === logs.length) {
+      const t = setTimeout(() => setComplete(true), 200)
+      return () => clearTimeout(t)
     }
-  }
+  }, [visibleLogs, logs.length])
 
-  const getIconColor = (type) => {
-    switch (type) {
-      case 'success': return 'text-green-500'
-      case 'info': return 'text-blue-400'
-      default: return 'text-gray-400'
-    }
-  }
+  const metrics = [
+    { label: 'Disputed', value: '127', color: 'text-[#3B82F6]' },
+    { label: 'Recovered', value: '94', color: 'text-[#10B981]' },
+    { label: 'Win Rate', value: '86%', color: 'text-[#10B981]' },
+    { label: 'Avg Time', value: '2.3h', color: 'text-[#F59E0B]' },
+  ]
 
   return (
-    <div className="mt-20 bg-gray-900 border border-gray-700 rounded-lg p-6 max-w-7xl mx-auto font-['JetBrains_Mono'] text-sm">
-      {/* Terminal Header */}
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-700">
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+    <div className="mt-12 max-w-7xl mx-auto">
+      <div className="border border-white/5 rounded-xl bg-[#1E293B] font-['JetBrains_Mono'] overflow-hidden">
+        {/* Header */}
+        <div className="px-5 py-3 border-b border-white/5 flex items-center justify-between bg-[#1E293B]/80">
+          <div className="flex items-center gap-3">
+            <span className="text-[#3B82F6] text-[10px] sm:text-xs font-semibold tracking-wider truncate">REVENAPATH v3.2 — RECOVERY CONSOLE</span>
+          </div>
+          <span className="text-[#10B981] text-xs flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+            live
+          </span>
         </div>
-        <div className="flex items-center text-white text-xs">
-          <FaTerminal className="mr-2" />
-          revenapath — active
-        </div>
-      </div>
-      
-      {/* Terminal Content */}
-      <div className="space-y-3">
-        <AnimatePresence>
-          {terminalLines.slice(0, currentLine + 1).map((line, index) => {
-            const IconComponent = line.icon
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className={`flex items-start space-x-3 ${getLineColor(line.type)}`}
-              >
-                {line.type === 'command' && (
-                  <span className="text-blue-400 font-bold">$</span>
-                )}
-                {IconComponent && (
-                  <IconComponent 
-                    className={`mt-0.5 shrink-0 ${getIconColor(line.type)}`} 
-                    size={14} 
-                  />
-                )}
-                {!IconComponent && line.type !== 'command' && (
-                  <span className="text-gray-500">▌</span>
-                )}
-                <span className="flex-1">
-                  {line.text}
-                  {index === currentLine && !isComplete && (
-                    <motion.span
-                      animate={{ opacity: [1, 0] }}
-                      transition={{ duration: 0.8, repeat: Infinity }}
-                      className="ml-1"
-                    >
-                      █
-                    </motion.span>
-                  )}
-                </span>
-              </motion.div>
-            )
-          })}
-        </AnimatePresence>
 
-        {/* Progress Bar */}
-        {isComplete && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center mt-6 pt-4 border-t border-gray-700"
-          >
-            <div className="w-48 bg-gray-700 rounded-full h-2 mr-4">
+        {/* Metrics */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 border-b border-white/5">
+          {metrics.map((m, i) => (
+            <div
+              key={m.label}
+              className={`px-4 sm:px-5 py-3 sm:py-4 ${i < 3 && (i + 1) % 2 !== 0 ? 'border-r border-white/5' : ''} ${i < 3 ? 'sm:border-r' : ''} ${i < 2 ? 'border-b border-white/5 sm:border-b-0' : ''}`}
+            >
+              <div className="text-gray-500 text-[10px] tracking-wider mb-1">{m.label}</div>
               <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: '92%' }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="bg-green-500 h-2 rounded-full"
-              />
+                className={`text-lg font-bold ${m.color}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+              >
+                {m.value}
+              </motion.div>
             </div>
-            <span className="text-gray-400 text-xs">Processing complete</span>
-          </motion.div>
-        )}
+          ))}
+        </div>
+
+        {/* Event Log */}
+        <div className="p-5">
+          <div className="text-gray-500 text-[10px] tracking-wider mb-3 flex items-center gap-2">
+            <FaClock />
+            RECENT DISPUTES
+          </div>
+          <div className="space-y-0.5">
+            <AnimatePresence>
+              {logs.slice(0, visibleLogs + 1).map((log, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex items-center gap-3 py-1.5 text-xs border-b border-white/[0.02] last:border-0"
+                >
+                  {log.status === 'won' ? (
+                    <FaCheck className="text-[#10B981] text-[10px] shrink-0" />
+                  ) : (
+                    <FaArrowUp className="text-[#3B82F6] text-[10px] shrink-0" />
+                  )}
+                  <span className="text-gray-300 flex-1 truncate">{log.text}</span>
+                  <span className={log.status === 'won' ? 'text-[#10B981] text-[10px]' : 'text-[#3B82F6] text-[10px]'}>
+                    {log.status}
+                  </span>
+                  <span className="text-gray-600 text-[10px] w-10 text-right">{log.time}</span>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
+
+      {/* Summary Banner */}
+      {complete && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-3 px-4 sm:px-5 py-3 rounded-lg border border-[#10B981]/20 bg-[#10B981]/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2"
+        >
+          <span className="text-[#10B981] font-['JetBrains_Mono'] text-[10px] sm:text-xs">
+            Batch processing complete. Revenue recovered: $47,281
+          </span>
+          <span className="text-gray-500 font-['JetBrains_Mono'] text-[10px]">86% success rate</span>
+        </motion.div>
+      )}
     </div>
   )
 }

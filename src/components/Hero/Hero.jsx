@@ -1,104 +1,69 @@
 import { motion } from 'framer-motion'
+import { FaArrowRight } from 'react-icons/fa'
 import Navigation from './Navigation'
 import TrustedBy from './TrustedBy'
 import TerminalDemo from './TerminalDemo'
 
 const Hero = () => {
   return (
-    <div className="min-h-screen text-white">
+    <div className="overflow-hidden">
       <Navigation />
-      
-      <div className="max-w-7xl 2xl:mx-auto m-6">
-        {/* Main Hero Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8">
-          {/* Text Content - Left Side */}
-          <div className="text-left">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-left leading-12 md:leading-20">
-              <span
-                className="block"
-              >
-                RETAIL
-              </span>
-              
-              <span
-                className="block text-blue-500"
-              >
-                CHARGEBACKS
-              </span>
-              
-              <span
-                className="block"
-              >
-                MADE SIMPLE.
-              </span>
-            </h1>
-          </div>
 
-          {/* Video - Right Side */}
-          <motion.div 
-            className="w-full h-64 md:h-96 lg:h-[450px] bg-[#0F172A] rounded-lg"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ 
-              duration: 1, 
-              delay: 0.4,
-              ease: "easeOut" 
-            }}
+      <div className="max-w-7xl mx-auto px-6 pt-28 md:pt-36 pb-24">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
           >
-            <video 
-              src='/assets/visual.mp4' 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="w-full h-full object-cover rounded-lg"
-            >
-            </video>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-white/5 rounded-md mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
+              <span className="text-[#3B82F6] text-xs font-['JetBrains_Mono'] tracking-wider uppercase">
+                AI-Powered Chargeback Recovery
+              </span>
+            </div>
+
+            <h1 className="text-[clamp(2rem,8vw,5rem)] font-bold leading-[1.05] tracking-tight">
+              <span className="block text-white">RETAIL</span>
+              <span className="block text-[#3B82F6]">CHARGEBACKS</span>
+              <span className="block text-white">MADE SIMPLE.</span>
+            </h1>
+
+            <p className="mt-6 text-sm sm:text-base text-gray-400 font-['IBM_Plex_Mono'] leading-relaxed max-w-md">
+              RevenaPath helps consumer brands reclaim revenue lost to avoidable chargebacks
+              with intelligent automation and AI-powered dispute resolution.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 mt-8">
+              <button className="group inline-flex items-center justify-center gap-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white px-8 py-3.5 rounded-lg font-['JetBrains_Mono'] font-medium text-sm transition-colors">
+                Talk to sales
+                <FaArrowRight className="text-xs group-hover:translate-x-0.5 transition-transform" />
+              </button>
+              <button className="inline-flex items-center justify-center gap-3 border border-white/10 hover:border-white/20 text-gray-300 hover:text-white px-8 py-3.5 rounded-lg font-['JetBrains_Mono'] font-medium text-sm transition-colors">
+                See how it works
+              </button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+          >
+            <div className="rounded-xl overflow-hidden border border-white/5 bg-[#1E293B]">
+              <video
+                src="/assets/visual.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full aspect-[4/3] object-cover"
+              />
+            </div>
           </motion.div>
         </div>
 
-        {/* Description Below */}
-        <motion.div 
-          className='bg-white p-6 border border-gray-200 rounded-lg mb-8'
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.8, 
-            delay: 0.9,
-            ease: "easeOut" 
-          }}
-        >
-          <p className="text-xl text-blue-950 font-extrabold mb-8 font-['IBM_Plex_Mono']">
-            RevenaPath helps consumer brands reclaim revenue lost to avoidable chargebacks, 
-            streamlining dispute workflows, reducing manual review, and improving recovery outcomes automatically.
-          </p>
-
-          <motion.div 
-            className="flex flex-col sm:flex-row justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: 1.3 
-            }}
-          >
-            <motion.button 
-              className="bg-gray-900 text-white px-8 py-4 rounded-lg font-['JetBrains_Mono'] font-medium hover:bg-blue-600 transition-colors w-full sm:w-auto"
-              whileHover={{ 
-                scale: 1.05,
-                backgroundColor: "#2563EB"
-              }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Talk to sales
-            </motion.button>
-          </motion.div>
-        </motion.div>
-
-        {/* Trusted By Section */}
         <TrustedBy />
-
-        {/* Terminal Demo */}
         <TerminalDemo />
       </div>
     </div>

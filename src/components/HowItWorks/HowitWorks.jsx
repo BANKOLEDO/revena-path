@@ -1,190 +1,93 @@
-import { motion } from "framer-motion"
-import { 
-    FaUpload,
-    FaRobot, 
-    FaCheckCircle, 
-    FaTrophy 
-} from "react-icons/fa";
+import { motion } from 'framer-motion'
 
-const HowItWorks = () => {
-    const steps = [
-        {
-            id: 1,
-            title: "Connect Your Data",
-            tagline: "SEAMLESS INTEGRATION",
-            description:
-                "Upload your retail and logistics data to RevenaPath. Our platform automatically integrates with your existing systems through APIs or direct file uploads, normalizing all your chargeback information in one secure location.",
-            icon: FaUpload,
-        },
-        {
-            id: 2,
-            title: "AI Analysis",
-            tagline: "INTELLIGENT PROCESSING",
-            description:
-                "Our advanced AI engine analyzes every chargeback claim, identifying invalid disputes and discrepancies. Document X-ray reads shipping documents with human-level accuracy to build bulletproof cases for recovery.",
-            icon: FaRobot,
-        },
-        {
-            id: 3,
-            title: "Auto-Dispute",
-            tagline: "AUTOMATED RESOLUTION",
-            description:
-                "RevenaPath automatically submits dispute claims with complete documentation. Our system handles the entire process—from evidence compilation to retailer communication—while you focus on growing your business.",
-            icon: FaCheckCircle,
-        },
-        {
-            id: 4,
-            title: "Recover Revenue",
-            tagline: "PROVEN RESULTS",
-            description:
-                "Track your recovery progress in real-time with detailed analytics. Monitor win rates, dispute status, and revenue recovered across all retail partners. Get insights that drive operational improvements.",
-            icon: FaTrophy,
-        },
-    ];
+const steps = [
+  {
+    id: 1,
+    title: 'Connect',
+    subtitle: 'Your data feeds in. Simple.',
+    desc: 'Connect your retail and logistics data through APIs or uploads. RevenaPath normalizes everything into one secure hub — no manual wrangling, no missed chargeback.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=85&auto=format&fit=crop',
+    align: 'left',
+  },
+  {
+    id: 2,
+    title: 'Analyze',
+    subtitle: 'AI that actually reads.',
+    desc: 'Every claim is dissected by our AI — spotting invalid disputes, reading shipping docs, grading evidence strength. What took hours now takes seconds.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=85&auto=format&fit=crop',
+    align: 'right',
+  },
+  {
+    id: 3,
+    title: 'Dispute',
+    subtitle: 'Fight back, automatically.',
+    desc: 'We compile evidence, draft disputes, and submit to retailers — all hands-off. Your team gets results without drowning in paperwork.',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=85&auto=format&fit=crop',
+    align: 'left',
+  },
+  {
+    id: 4,
+    title: 'Recover',
+    subtitle: 'Revenue you already earned.',
+    desc: 'Real-time dashboards track every dispute, win rate, and dollar recovered. Watch lost revenue flow back where it belongs — your bottom line.',
+    image: 'https://images.unsplash.com/photo-1711606815631-38d32cdaec3e?w=600&auto=format&fit=crop',
+    align: 'right',
+  },
+]
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.12,
-                delayChildren: 0.2,
-            },
-        },
-    };
+const HowItWorks = () => (
+  <section id="how-it-works" className="max-w-7xl mx-auto px-6 py-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-white font-['JetBrains_Mono'] mb-2">HOW IT WORKS</h2>
+      <p className="text-gray-400 font-['IBM_Plex_Mono'] text-sm mb-12">
+        Four moves. One outcome: revenue recovered.
+      </p>
+    </motion.div>
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" },
-        },
-    };
-
-    const iconVariants = {
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: { duration: 0.5, ease: "easeOut" },
-        },
-        hover: {
-            scale: 1.02,
-            transition: { duration: 0.3 }
-        }
-    };
-
-    return (
-        <div className="max-w-7xl 2xl:mx-auto m-6 px-4 sm:px-6 lg:px-8 py-4 md:py-4 border-2 border-blue-800 text-blue-950 bg-white rounded-lg">
-            <motion.div 
-                className="flex flex-col gap-8 p-6 md:p-8 "
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-            >
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                >
-                    <h1 className="font-extrabold text-3xl md:text-4xl lg:text-5xl tracking-tight mb-2">
-                        HOW IT WORKS
-                    </h1>
-                    <p className="text-sm md:text-base text-blue-950 font-semibold tracking-wide uppercase">
-                        Four simple steps to recover lost revenue
-                    </p>
-                </motion.div>
-
-                <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {steps.map((step, index) => {
-                        const Icon = step.icon;
-                        return (
-                            <motion.div 
-                                key={step.id}
-                                className="flex flex-col gap-4 p-6 border-2 border-blue-950 rounded-lg hover:border-blue-700 transition-colors duration-300 relative"
-                                variants={itemVariants}
-                                whileHover={{ y: -4 }}
-                            >
-                                {/* Step Number */}
-                                <div className="absolute -top-4 -left-4 w-10 h-10 bg-white border-2 border-blue-800 rounded-full flex items-center justify-center font-bold text-blue-800">
-                                    {index + 1}
-                                </div>
-
-                                <motion.div
-                                    variants={iconVariants}
-                                    whileHover="hover"
-                                    className="flex items-center gap-3"
-                                >
-                                    <Icon className="text-2xl md:text-3xl text-blue-800 flex-shrink-0" />
-                                    <h2 className="font-bold text-xl md:text-2xl">{step.title}</h2>
-                                </motion.div>
-
-                                <p className="text-xs md:text-sm font-semibold text-blue-950 tracking-wider uppercase">
-                                    {step.tagline}
-                                </p>
-
-                                <p className="text-sm md:text-base leading-relaxed text-blue-950">
-                                    {step.description}
-                                </p>
-                            </motion.div>
-                        );
-                    })}
-                </motion.div>
-                
-                {/* Flow Indicator */}
-                <motion.div 
-                    className="flex justify-center items-center gap-2 mt-8 flex-wrap"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2, duration: 0.6 }}
-                >
-                    {[1, 2, 3, 4].map((item, idx) => (
-                        <div key={item} className="flex items-center gap-2">
-                            <motion.div 
-                                className="w-2 h-2 rounded-full bg-blue-800"
-                                animate={{ scale: [1, 1.2, 1] }}
-                                transition={{ 
-                                    delay: idx * 0.2,
-                                    duration: 1,
-                                    repeat: Infinity 
-                                }}
-                            />
-                            {idx < 3 && <div className="w-4 h-0.5 bg-blue-800" />}
-                        </div>
-                    ))}
-                </motion.div>
-
-                {/* Video Section */}
-                <motion.div 
-                    className="w-full mt-8"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ 
-                        duration: 0.8, 
-                        delay: 0.6,
-                        ease: "easeOut" 
-                    }}
-                >
-                    <div className="overflow-hidden">
-                        <video 
-                            src='/assets/visual2.mp4' 
-                            autoPlay 
-                            loop 
-                            muted 
-                            playsInline
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </motion.div>
-            </motion.div>
-        </div>
-    )
-}
+    <div className="space-y-6">
+      {steps.map((s, i) => {
+        const isLeft = s.align === 'left'
+        return (
+          <motion.div
+            key={s.id}
+            className={`flex flex-col ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} gap-0 rounded-xl overflow-hidden border border-white/5`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <div className="w-full md:w-[55%] h-[280px] md:h-[340px] overflow-hidden">
+              <img
+                src={s.image}
+                alt={s.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="w-full md:w-[45%] bg-[#1E293B]/60 p-8 md:p-10 flex flex-col justify-center">
+              <span className="text-[#3B82F6] font-['JetBrains_Mono'] text-xs font-semibold tracking-[0.2em] mb-3">
+                STEP 0{s.id}
+              </span>
+              <h3 className="text-2xl md:text-3xl font-bold text-white font-['JetBrains_Mono'] mb-2">
+                {s.title}
+              </h3>
+              <p className="text-white/60 font-['IBM_Plex_Mono'] text-sm mb-4">
+                {s.subtitle}
+              </p>
+              <p className="text-gray-400 font-['IBM_Plex_Mono'] text-sm leading-relaxed">
+                {s.desc}
+              </p>
+            </div>
+          </motion.div>
+        )
+      })}
+    </div>
+  </section>
+)
 
 export default HowItWorks

@@ -1,116 +1,114 @@
-import React from "react"
-import { motion } from "framer-motion"
-import { 
-    FaFileInvoiceDollar, 
-    FaClock, 
-    FaExclamationTriangle, 
-    FaChartLine, 
-    FaUserEdit, 
-    FaDatabase 
-} from "react-icons/fa";
-
-const WithoutRevena = () => {
+import { motion } from 'framer-motion'
+import { FaExclamationTriangle, FaCheckCircle } from 'react-icons/fa'
 
 const issues = [
-    {
-        id: 1,
-        issue: "Hours wasted manually reviewing chargeback reports",
-        icon: FaClock,
-    },
-    {
-        id: 2,
-        issue: "High risk of missed penalties due to scattered data",
-        icon: FaExclamationTriangle,
-    },
-    {
-        id: 3,
-        issue: "Slow dispute turnaround because every step is done by hand",
-        icon: FaUserEdit,
-    },
-    {
-        id: 4,
-        issue: "No real-time visibility into which deductions hurt margins most",
-        icon: FaChartLine,
-    },
-    {
-        id: 5,
-        issue: "Constant spreadsheet updates and version conflicts",
-        icon: FaDatabase,
-    },
-    {
-        id: 6,
-        issue: "Retail portal fines accumulate before they’re even noticed",
-        icon: FaFileInvoiceDollar,
-    },
-];
+  'Hours wasted reviewing chargeback reports manually',
+  'Missed penalties from scattered data',
+  'Slow dispute turnaround — every step by hand',
+  'No real-time visibility into margin-killing deductions',
+  'Spreadsheet hell and version conflicts',
+  'Retail fines pile up before you notice',
+]
 
-    return (
-        <div className="max-w-7xl 2xl:mx-auto m-6 p-8 border border-gray-700 rounded-lg">
-            <motion.p 
-                className="text-white font-['JetBrains_Mono'] text-3xl lg:text-4xl mb-12 tracking-wide font-bold"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-            >
-                WITHOUT REVENAPATH
-            </motion.p>
-        {/* Marquee Container */}
-              <div className="relative overflow-hidden">
-                {/* Gradient Overlays */}
-                <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-[#0F172A] to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-[#0F172A] to-transparent z-10" />
-                
-                {/* Marquee Content */}
-                <motion.div 
-                  className="flex gap-8 items-center"
-                  animate={{
-                    x: [0, -1032] // Adjust based on total width of one set
-                  }}
-                  transition={{
-                    x: {
-                      repeat: Infinity,
-                      repeatType: "loop",
-                      duration: 30,
-                      ease: "linear",
-                    }
-                  }}
-                >
-                  {/* First Set */}
-                  {issues.map((issue, index) => {
-                    const IconComponent = issue.icon;
-                    return (
-                        <div
-                      key={`first-${index}`}
-                      className="flex flex-row gap-2 items-center shrink-0 text-blue-950 font-['JetBrains_Mono'] text-sm border border-gray-700 px-6 py-3 rounded-lg bg-[#f0f5fd] hover:border-blue-500 transition-colors duration-300 cursor-default"
-                    > 
-                      <IconComponent className="text-blue-900 text-2xl"/>
-                      {issue.issue}
-                    </div>
-                    )
-                })}
-                  
-                  {/* Second Set (Duplicate for seamless loop) */}
-                  {issues.map((issue, index) => {
-                    const IconComponent = issue.icon;
-                    return (
-                        <div
-                      key={`second-${index}`}
-                      className="shrink-0 text-blue-950 font-['JetBrains_Mono'] text-sm border border-gray-700 px-6 py-3 rounded-lg bg-white hover:border-blue-500 transition-colors duration-300 cursor-default"
-                    > 
-                      <IconComponent className="text-blue-900 text-2xl"/>
-                      {issue.issue}
-                    </div>
-                    )
-                })}
-                </motion.div>
+const solutions = [
+  'Automated detection & dispute filing',
+  'Real-time tracking across all retailers',
+  'AI-powered evidence in minutes',
+  'Centralized dashboard with actionable analytics',
+  'Seamless integrations',
+  '80%+ average recovery rate',
+]
+
+const WithoutRevena = () => (
+  <section id="comparison" className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-white font-['JetBrains_Mono'] mb-2">WITH vs WITHOUT</h2>
+      <p className="text-gray-400 font-['IBM_Plex_Mono'] text-sm mb-10 max-w-2xl">
+        Up to 7% of revenue disappears to chargebacks. The choice is yours.
+      </p>
+    </motion.div>
+
+    <div className="grid md:grid-cols-2 gap-0 rounded-xl overflow-hidden border border-white/5">
+      {/* WITHOUT */}
+      <motion.div
+        className="relative min-h-[420px] flex flex-col"
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <img
+          src="https://picsum.photos/seed/chaos-chaos/800/700"
+          alt="without"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
+          <span className="text-red-400 font-['JetBrains_Mono'] text-xs font-semibold tracking-[0.2em] mb-6">
+            WITHOUT REVENAPATH
+          </span>
+          <div className="space-y-3 flex-1">
+            {issues.map((item, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3"
+              >
+                <FaExclamationTriangle className="text-red-400/60 text-xs mt-0.5 shrink-0" />
+                <span className="text-gray-300 font-['JetBrains_Mono'] text-xs">{item}</span>
               </div>
-              <div className="flex flex-col lg:flex-row lg:gap-4 lg:space-x-10 gap-2 mt-3">
-                <span>Up to 7% of revenue disappears to chargebacks — from shortages, fines, and compliance penalties.</span>
-                <span>Manual workflows and scattered data make the losses even worse.</span>
+            ))}
+          </div>
+          <div className="mt-6 pt-6 border-t border-white/5">
+            <span className="text-3xl font-bold text-red-400 font-['JetBrains_Mono']">7%</span>
+            <span className="text-gray-500 font-['IBM_Plex_Mono'] text-xs ml-2">revenue lost</span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* WITH */}
+      <motion.div
+        className="relative min-h-[420px] flex flex-col"
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.15 }}
+        viewport={{ once: true }}
+      >
+        <img
+          src="https://picsum.photos/seed/clean-success/800/700"
+          alt="with"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#0F172A]/80" />
+        <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
+          <span className="text-[#10B981] font-['JetBrains_Mono'] text-xs font-semibold tracking-[0.2em] mb-6">
+            WITH REVENAPATH
+          </span>
+          <div className="space-y-3 flex-1">
+            {solutions.map((item, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3"
+              >
+                <FaCheckCircle className="text-[#10B981] text-xs mt-0.5 shrink-0" />
+                <span className="text-gray-300 font-['JetBrains_Mono'] text-xs">{item}</span>
               </div>
-            </div>
-    )
-}
+            ))}
+          </div>
+          <div className="mt-6 pt-6 border-t border-white/5">
+            <span className="text-3xl font-bold text-[#10B981] font-['JetBrains_Mono']">80%+</span>
+            <span className="text-gray-500 font-['IBM_Plex_Mono'] text-xs ml-2">revenue recovered</span>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  </section>
+)
 
 export default WithoutRevena
